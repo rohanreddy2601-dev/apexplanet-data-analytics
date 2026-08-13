@@ -63,3 +63,60 @@ apexplanet-data-analytics/
 ## 👤 Author
 **Yelletiwar Rohan Reddy**
 Data Analytics Intern @ ApexPlanet Software Pvt. Ltd.
+## Task 2: SQL for Data Extraction
+
+### 🎯 Objective
+Master SQL queries for data extraction and business analysis, and integrate SQL with Python for automated data workflows.
+
+### 🛠️ Tools Used
+- SQLite (via Python's built-in `sqlite3` module)
+- `sqlalchemy` and `pandas.read_sql()` for Python-SQL integration
+
+### 📁 Additional Files
+```
+├── data/ecommerce.db          # SQLite database (cleaned dataset loaded as 'orders' table)
+├── notebooks/02_sql_extraction.ipynb   # SQL practice + business questions notebook
+├── scripts/business_queries.sql        # All 10 business question queries
+├── scripts/db_utils.py                 # Reusable database utility functions
+```
+
+### 🗃️ SQL Concepts Practiced
+- SELECT, WHERE, ORDER BY, LIMIT
+- GROUP BY, HAVING
+- JOINs (with a custom region-manager lookup table)
+- Subqueries and CTEs (`WITH` clause)
+- Window functions: ROW_NUMBER, RANK, LAG
+- Views for reusable queries
+
+### 📊 10 Business Questions Answered
+1. Top 5 products by sales (per category)
+2. Monthly sales trend (with month-over-month change)
+3. Customer segmentation by spend
+4. Most profitable region
+5. Shipping mode usage and average delivery time
+6. Discount level impact on profit
+7. Top 5 customers by profit generated
+8. Most valuable customer segment
+9. Order priority vs average profit
+10. Year-over-year sales growth
+
+### 💡 Key Insights
+1. **Discounts above ~30% turn orders unprofitable on average** — at 85% discount, average profit drops to -$1,534 per order, making discount strategy a critical profitability lever.
+2. **Central region generates the most profit** (~$311K), while Canada and Southeast Asia are barely profitable — a strong candidate for deeper regional strategy review.
+3. **Consumer segment drives the most sales and profit**, ahead of Corporate and Home Office, suggesting marketing/retention efforts are well-placed there.
+4. **Sales have grown consistently year-over-year**: +18.5% (2012), +27.2% (2013), +26.25% (2014).
+5. **Order priority has minimal effect on profitability** — "Critical" orders aren't meaningfully more profitable than "Low" priority ones, suggesting priority labels don't currently reflect profit-driven decision-making.
+
+### 🚀 How to Use the Database Utility
+```python
+from scripts.db_utils import run_query, get_top_n, get_summary_by_group
+
+# Run any custom SQL query
+result = run_query("SELECT * FROM orders LIMIT 10;")
+
+# Get top N rows by a column
+top_sales = get_top_n('orders', 'Sales', n=10)
+
+# Get grouped summary
+category_summary = get_summary_by_group('orders', 'Category', 'Sales')
+```
