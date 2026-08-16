@@ -248,3 +248,74 @@ from sklearn.linear_model import LinearRegression
 lr_model = LinearRegression()
 lr_model.fit(X_train, y_train)
 ```
+## Task 5: Final Report, Automation & Presentation
+
+### 🎯 Objective
+Create a final executive report, automate the data pipeline, and prepare the project for final submission.
+
+### 🛠️ Tools Used
+- ReportLab — PDF report generation
+- GitHub Actions — pipeline scheduling and automation
+
+### 📁 Additional Files
+```
+├── reports/executive_summary_report.pdf     # 2-page executive summary report
+├── scripts/pipeline.py                      # Automated data pipeline script
+├── .github/workflows/pipeline.yml           # GitHub Actions scheduling config
+├── requirements.txt                         # Project dependencies
+```
+
+### 📄 Executive Summary Report
+A 2-page PDF report summarizing the full project, including:
+- Executive summary of the analysis and key business metrics
+- Power BI dashboard screenshot
+- Top 5 insights (drawn from Tasks 1–4)
+- 3 actionable business recommendations with rationale
+
+**Report:** [`reports/executive_summary_report.pdf`](reports/executive_summary_report.pdf)
+
+### ⚙️ Automated Data Pipeline
+Built a reusable Python pipeline (`scripts/pipeline.py`) that:
+1. Loads raw data from CSV/Excel
+2. Cleans it (removes junk columns, handles missing values, fixes data types)
+3. Calculates key business KPIs (total sales, profit, orders, customers, average order value, profit margin, top category, top region)
+4. Exports cleaned data and KPIs to a timestamped Excel file
+
+Scheduled to run automatically via **GitHub Actions** (`.github/workflows/pipeline.yml`) on a daily cron schedule, with support for manual triggering.
+
+### 📊 Sample Pipeline Output (KPIs)
+| KPI | Value |
+|---|---|
+| Total Sales | $12,642,501.91 |
+| Total Profit | $1,467,457.29 |
+| Total Orders | 25,035 |
+| Total Customers | 1,590 |
+| Average Order Value | $246.49 |
+| Average Profit Margin | 11.61% |
+| Top Category | Technology |
+| Top Region (by Profit) | Central |
+
+### 🏷️ Final Release
+This project is tagged as **`v1.0.0`**, representing the complete, final version of the ApexPlanet Data Analytics Internship deliverables across all 5 tasks.
+
+### 🚀 How to Run the Pipeline
+```bash
+pip install -r requirements.txt
+python scripts/pipeline.py
+```
+
+---
+
+## 📌 Project Summary
+
+This repository documents a complete, 5-task data analytics internship project at ApexPlanet Software Pvt. Ltd., covering the full analytics lifecycle on a global e-commerce sales dataset (51,290 orders, 2011–2014):
+
+1. **Foundational Setup & EDA** — environment setup, data cleaning, exploratory analysis
+2. **SQL for Data Extraction** — SQL fundamentals, advanced queries, Python-SQL integration
+3. **Data Visualization & Dashboarding** — Python visualizations, interactive Power BI dashboard
+4. **Advanced Analytics & Statistical Modeling** — hypothesis testing, time series analysis, clustering, predictive modeling
+5. **Final Report, Automation & Presentation** — executive summary report, automated pipeline, final packaging
+
+**Author:** Yelletiwar Rohan Reddy
+**Internship:** Data Analytics, ApexPlanet Software Pvt. Ltd.
+**Offer ID:** APSPL2645037
