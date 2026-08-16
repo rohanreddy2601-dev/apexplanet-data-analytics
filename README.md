@@ -120,3 +120,131 @@ top_sales = get_top_n('orders', 'Sales', n=10)
 # Get grouped summary
 category_summary = get_summary_by_group('orders', 'Category', 'Sales')
 ```
+## Task 3: Data Visualization & Dashboarding
+
+### 🎯 Objective
+Create professional data visualizations and an interactive executive dashboard.
+
+### 🛠️ Tools Used
+- Matplotlib, Seaborn — static visualizations
+- Plotly — interactive visualizations
+- Power BI Desktop — dashboard design and publishing
+
+### 📁 Additional Files
+```
+├── notebooks/03_visualizations.ipynb        # All Python visualizations
+├── dashboards/AMAZON SALES REPORT.pbix       # Power BI dashboard file
+├── reports/monthly_sales_trend.png
+├── reports/sales_by_category.png
+├── reports/sales_vs_profit.png
+├── reports/sales_distribution.png
+├── reports/correlation_heatmap.png
+├── reports/profit_boxen.png
+├── reports/pairplot.png
+├── reports/interactive_sales_by_category.html
+├── reports/interactive_monthly_trend.html
+```
+
+### 📊 Visualizations Created
+- Line chart: Monthly sales trend
+- Bar chart: Total sales by category
+- Scatter plot: Sales vs Profit
+- Histogram: Sales distribution
+- Heatmap: Correlation between Sales, Quantity, Discount, Profit, Shipping Cost
+- Boxen plot: Profit distribution by category
+- Pairplot: Relationships between key numeric variables
+- Interactive Plotly charts (HTML): category sales and monthly trend
+
+### 📈 Power BI Dashboard
+Built an executive dashboard with KPI cards (total sales, customers, orders), sales trend line chart, category breakdown, geographic sales map, top 10 products/customers, and filter panel (date, region, category).
+
+**Dashboard file:** [`dashboards/AMAZON SALES REPORT.pbix`](dashboards/AMAZON%20SALES%20REPORT.pbix)
+
+### 💡 Key Insights
+1. Sales distribution confirmed as heavily right-skewed, consistent with Task 1 findings.
+2. Clear positive correlation between Sales and Profit, though with meaningful spread — some high-sales orders are still unprofitable due to discounting.
+3. Category-level breakdown visually confirms Technology as the top-performing category by sales.
+
+---
+
+## Task 4: Advanced Analytics & Statistical Modeling
+
+### 🎯 Objective
+Apply statistical analysis, time series analysis, customer segmentation, and basic predictive modeling to extract deeper, data-driven insights.
+
+### 🛠️ Tools Used
+- `scipy.stats` — hypothesis testing, confidence intervals
+- `statsmodels` — time series decomposition
+- `scikit-learn` — K-Means clustering, PCA, Linear Regression
+
+### 📁 Additional Files
+```
+├── notebooks/04_advanced_analytics.ipynb   # Full statistical + ML analysis
+├── reports/time_series_decomposition.png
+├── reports/moving_average_forecast.png
+├── reports/elbow_method.png
+├── reports/customer_clusters_pca.png
+```
+
+### 📊 Analysis Performed
+
+**Statistical Analysis**
+- Descriptive statistics (mean, median, mode, std dev, skewness) for Sales, Quantity, Discount, Profit, Shipping Cost
+- Independent t-test: Profit (Consumer vs Corporate segment)
+- Chi-square test: association between Region and Order Priority
+- 95% confidence interval for mean Profit
+
+**Time Series Analysis**
+- Monthly resampling of Sales data
+- Seasonal decomposition (trend, seasonality, residuals)
+- 3-month moving average forecast
+
+**Customer Segmentation (K-Means Clustering)**
+- Feature engineering: total spend, order frequency, average order value, total profit per customer
+- Standardized features and applied K-Means (K=4, selected via elbow method)
+- 2D cluster visualization using PCA
+- Profiled each segment by average behavior
+
+**Predictive Modeling**
+- Linear Regression predicting Sales from Quantity, Discount, and Shipping Cost
+- 80/20 train/test split
+- Evaluated using R², MAE, RMSE
+
+### 💡 Key Insights
+
+1. **No statistically significant profit difference between Consumer and Corporate segments** (t-test, p=0.848) — Consumer's higher *total* profit is driven by order volume, not higher per-order profitability.
+
+2. **Region and Order Priority are significantly associated** (chi-square, p<0.001) — order urgency varies meaningfully by region, suggesting geographic factors influence fulfillment patterns.
+
+3. **95% confidence interval for mean profit: ($27.10, $30.12)** — a statistically reliable estimate of true average profit per order.
+
+4. **Sales show a consistent upward trend and strong annual seasonality**, with dips in Jan/Feb and peaks toward year-end (holiday season), confirmed via time series decomposition.
+
+5. **Four distinct customer segments identified via K-Means clustering:**
+   - **VIP Customers** (222 customers): highest spend and profit, frequent high-value orders — top retention priority
+   - **Loyal Regulars** (552 customers): frequent buyers with moderate order values — dependable revenue base
+   - **Occasional Big Spenders** (151 customers): infrequent but high-value orders — re-engagement opportunity
+   - **Low-Value/New Customers** (665 customers): largest group by count, lowest spend/profit — growth opportunity
+
+6. **Discount is the strongest predictor of Sales value** (Linear Regression coefficient: -56.25) — higher discounts are associated with lower sale values, reinforcing earlier findings that aggressive discounting hurts profitability. Model achieved R²=0.65 using just three features (Quantity, Discount, Shipping Cost).
+
+### 🚀 How to Reproduce
+```python
+# Statistical tests
+from scipy import stats
+t_stat, p_value = stats.ttest_ind(consumer_profit, corporate_profit, equal_var=False)
+
+# Time series decomposition
+from statsmodels.tsa.seasonal import seasonal_decompose
+decomposition = seasonal_decompose(ts_data, model='additive', period=12)
+
+# Customer clustering
+from sklearn.cluster import KMeans
+kmeans = KMeans(n_clusters=4, random_state=42, n_init=10)
+customer_features['Cluster'] = kmeans.fit_predict(X_scaled)
+
+# Predictive model
+from sklearn.linear_model import LinearRegression
+lr_model = LinearRegression()
+lr_model.fit(X_train, y_train)
+```
