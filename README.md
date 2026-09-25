@@ -158,7 +158,9 @@ Create professional data visualizations and an interactive executive dashboard.
 ### 📈 Power BI Dashboard
 Built an executive dashboard with KPI cards (total sales, customers, orders), sales trend line chart, category breakdown, geographic sales map, top 10 products/customers, and filter panel (date, region, category).
 
-**Dashboard file:** [`dashboards/AMAZON SALES REPORT.pbix`](dashboards/AMAZON%20SALES%20REPORT.pbix)
+**Dashboard file:** 
+<img width="479" height="265" alt="Screenshot 2026-09-25 080821" src="https://github.com/user-attachments/assets/30c93e45-1ad9-4f4d-b2f5-0db0ffc991ff" />
+
 
 ### 💡 Key Insights
 1. Sales distribution confirmed as heavily right-skewed, consistent with Task 1 findings.
